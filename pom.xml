@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>Axiom Warp JDBC</name>
+    <description>The sovereign, framework-agnostic SQL-relational adapter and JDBC governance driver for Axiom.</description>
+    <url>https://github.com/ensemblu-corp/axiom-warp-jdbc</url>
+
+    <groupId>com.ensemblu</groupId>
+    <artifactId>axiom-warp-jdbc</artifactId>
+    <version>1.0.0</version>
+
+    <organization>
+        <name>Ensemblu Corp</name>
+        <url>https://ensemblu.com</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Ofek Malka</name>
+            <email>contact@ensemblu.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/ensemblu-corp/axiom-warp-jdbc.git</connection>
+        <developerConnection>scm:git:ssh://github.com/ensemblu-corp/axiom-warp-jdbc.git</developerConnection>
+        <url>https://github.com/ensemblu-corp/axiom-warp-jdbc</url>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>Limited Commercial License</name>
+            <url>https://raw.githubusercontent.com/ensemblu-corp/axiom-warp-jdbc/main/LICENSE</url>
+            <distribution>repo</distribution>
+            <comments>
+                Free for evaluation, testing, and non-commercial development.
+                Commercial or production use requires a paid annual contract.
+            </comments>
+        </license>
+    </licenses>
+
+    <properties>
+        <java.version>26</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Source: https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+        <maven-compiler.version>3.15.0</maven-compiler.version>
+        <!-- Source: https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jar-plugin -->
+        <maven-jar.version>3.5.0</maven-jar.version>
+        <!-- Source: https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-source-plugin -->
+        <maven-source.version>3.4.0</maven-source.version>
+        <!-- Source: https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-install-plugin -->
+        <maven-install.version>3.1.4</maven-install.version>
+        <!-- Source: https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-clean-plugin -->
+        <maven-clean.version>3.5.0</maven-clean.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ensemblu</groupId>
+            <artifactId>axiom-spec</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}</directory>
+                <includes>
+                    <include>LICENSE.md</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler.version}</version>
+                <configuration>
+                    <release>${java.version}</release>
+                    <compilerArgs>
+                        <arg>--enable-preview</arg>
+                        <arg>-parameters</arg>
+                        <arg>-Xlint:all</arg>
+                        <arg>-Xlint:deprecation</arg>
+                        <arg>-Xlint:-unchecked</arg>
+                        <arg>-Xlint:-rawtypes</arg>
+                        <arg>-Xlint:-preview</arg>
+                        <arg>-Xlint:-serial</arg>
+                        <arg>-Xlint:-classfile</arg>
+                        <arg>-proc:none</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar.version}</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Implementation-Title>Axiom JDBC Warp Driver</Implementation-Title>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                            <Build-Jdk-Spec>${java.version}</Build-Jdk-Spec>
+                            <Axiom-Compliance-Level>SQL-Relational-Adapter</Axiom-Compliance-Level>
+                            <Automatic-Module-Name>com.ensemblu.warp.jdbc</Automatic-Module-Name>
+                            <Created-By>Axiom-Architect</Created-By>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${maven-install.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven-clean.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
