@@ -144,8 +144,7 @@ warp.write(() ->
 warp.ingest()
     .fromFile("users.csv")
     .usingFileHeaders()
-    .onTableName("users")
-    .ingest();   // Result<Long> — rows ingested
+    .onTableName("users");   // Result<Long> — rows ingested
 ```
 
 `Hammer` streams the CSV row-by-row via `CsvEngine`, derives the insert SQL from the first row's keys, and batches inserts in chunks of `BATCH_SIZE` (1,000 rows) inside a single prepared statement.
