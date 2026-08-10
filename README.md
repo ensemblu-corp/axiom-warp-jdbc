@@ -16,13 +16,13 @@ Summon the Specification engine into your project:
 <dependency>    
      <groupId>com.ensemblu</groupId>   
      <artifactId>axiom-warp-jdbc</artifactId>   
-     <version>1.0.0</version>  
+     <version>2.0.0</version>  
 </dependency>   
 ```   
 **Gradle**  
   
 ```groovy
- implementation("com.ensemblu:axiom-warp-jdbc:1.0.0")   
+ implementation("com.ensemblu:axiom-warp-jdbc:2.0.0")   
 ```
 
 
